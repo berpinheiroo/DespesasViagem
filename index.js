@@ -60,41 +60,41 @@ console.log(`Serão necessárias ${qtdParadas} paradas para a viagem.`)
 // Parte 3
 
 function calcularValorRefeicoes(qtdParadas, passageiros) {
-    const precoRefeicaoLeveAdulto = 30;
-    const precoRefeicaoLeveCrianca = 20;
-    const precoRefeicaoCompletaAdulto = 50;
-    const precoRefeicaoCompletaCrianca = 40;
-    let totalGasto = 0;
+    const precoRefeicaoLeveAdulto = 30
+    const precoRefeicaoLeveCrianca = 20
+    const precoRefeicaoCompletaAdulto = 50
+    const precoRefeicaoCompletaCrianca = 40
+    let totalGasto = 0
   
     // Primeira parada
-    totalGasto += precoRefeicaoCompletaAdulto * countAdultos(passageiros);
-    totalGasto += precoRefeicaoCompletaCrianca * countCriancas(passageiros);
+    totalGasto += precoRefeicaoCompletaAdulto * countAdultos(passageiros)
+    totalGasto += precoRefeicaoCompletaCrianca * countCriancas(passageiros)
   
     // Cada duas paradas de refeições leves, uma é de refeições completas
     for (let i = 2; i <= qtdParadas; i += 2) {
-      totalGasto += precoRefeicaoCompletaAdulto * countAdultos(passageiros);
-      totalGasto += precoRefeicaoCompletaCrianca * countCriancas(passageiros);
+      totalGasto += precoRefeicaoCompletaAdulto * countAdultos(passageiros)
+      totalGasto += precoRefeicaoCompletaCrianca * countCriancas(passageiros)
     }
   
     // Demais paradas são de refeições leves
     for (let i = 1; i < qtdParadas; i += 2) {
-      totalGasto += precoRefeicaoLeveAdulto * countAdultos(passageiros);
-      totalGasto += precoRefeicaoLeveCrianca * countCriancas(passageiros);
+      totalGasto += precoRefeicaoLeveAdulto * countAdultos(passageiros)
+      totalGasto += precoRefeicaoLeveCrianca * countCriancas(passageiros)
     }
   
     return totalGasto;
   }
   
   function countAdultos(passageiros) {
-    return passageiros.filter(passageiro => passageiro === 'adulto').length;
+    return passageiros.filter(passageiro => passageiro === 'adulto').length
   }
   
   function countCriancas(passageiros) {
-    return passageiros.filter(passageiro => passageiro === 'crianca').length;
+    return passageiros.filter(passageiro => passageiro === 'crianca').length
   }
   
 
   // (Dados reutilizados da parte 2)
-  let gastosRefeicoes = calcularValorRefeicoes(qtdParadas, passageiros);
+  let gastosRefeicoes = calcularValorRefeicoes(qtdParadas, passageiros)
 
-  console.log(gastosRefeicoes);
+  console.log(gastosRefeicoes)
