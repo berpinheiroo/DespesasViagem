@@ -1,6 +1,13 @@
 // Parte 1
 
 function calcularGastoCombustivel(distanciaMetros, tipoCombustivel) {
+    if (!distanciaMetros || typeof distanciaMetros !== 'number' || distanciaMetros <= 0) {
+        return 'Distância inválida'
+    }
+    if (!tipoCombustivel || typeof tipoCombustivel !== 'string' || !['gasolina', 'etanol'].includes(tipoCombustivel)) {
+        return 'Tipo de combustível inválido'
+    }
+
     let kmPorLitro
     if (tipoCombustivel === 'gasolina') {
         kmPorLitro = 16
@@ -22,6 +29,14 @@ console.log(litrosNecessarios)
 // Parte 2
 
 function calcularNumeroParadas(passageiros, duracaoHoras) {
+    if (!passageiros || !Array.isArray(passageiros) || passageiros.length <= 0) {
+        return 'Lista de passageiros inválida'
+    }
+
+    if (!duracaoHoras || typeof duracaoHoras !== 'number' || duracaoHoras <= 0) {
+        return 'Duração inválida'
+    }
+
     let qtdAdultos = 0
     let qtdCriancas = 0
 
@@ -55,11 +70,18 @@ const duracaoHoras = 5
 
 const qtdParadas = calcularNumeroParadas(passageiros, duracaoHoras)
 
-console.log(`Serão necessárias ${qtdParadas} paradas para a viagem.`)
+console.log(`Serão necessárias ${ qtdParadas } paradas para a viagem.`)
 
 // Parte 3
 
 function calcularValorRefeicoes(qtdParadas, passageiros) {
+    if (!Number.isInteger(qtdParadas) || qtdParadas <= 0) {
+      return 'A quantidade de paradas deve ser um número inteiro positivo.'
+    }
+    if (!Array.isArray(passageiros) || passageiros.length === 0) {
+      return 'A lista de passageiros deve ser um array não vazio.'
+    }
+  
     const precoRefeicaoLeveAdulto = 30
     const precoRefeicaoLeveCrianca = 20
     const precoRefeicaoCompletaAdulto = 50
@@ -82,19 +104,32 @@ function calcularValorRefeicoes(qtdParadas, passageiros) {
       totalGasto += precoRefeicaoLeveCrianca * countCriancas(passageiros)
     }
   
-    return totalGasto;
+    return totalGasto
   }
   
   function countAdultos(passageiros) {
+    if (!Array.isArray(passageiros) || passageiros.length === 0) {
+      return 0
+    }
     return passageiros.filter(passageiro => passageiro === 'adulto').length
   }
   
   function countCriancas(passageiros) {
+    if (!Array.isArray(passageiros) || passageiros.length === 0) {
+      return 0
+    }
     return passageiros.filter(passageiro => passageiro === 'crianca').length
   }
   
-
   // (Dados reutilizados da parte 2)
-  let gastosRefeicoes = calcularValorRefeicoes(qtdParadas, passageiros)
-
-  console.log(gastosRefeicoes)
+  if (typeof qtdParadas === 'string') {
+    console.log(qtdParadas)
+  } else {
+    const gastosRefeicoes = calcularValorRefeicoes(qtdParadas, passageiros)
+    if (typeof gastosRefeicoes === 'string') {
+      console.log(gastosRefeicoes)
+    } else {
+      console.log(`O gasto total com refeições será de R$${gastosRefeicoes}.`)
+    }
+  }
+  
